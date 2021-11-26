@@ -1,1 +1,4 @@
 This 1st Commit
+
+
+Added somme more informations
