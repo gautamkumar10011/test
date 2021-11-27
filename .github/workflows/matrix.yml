@@ -15,16 +15,16 @@ jobs:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-        node_version: [6, 8, 12]
+        node_v: [6, 8, 12]
         include:
           - os: ubuntu-latest
-            node_version: 8
+            node_v: 8
             is_ubuntu_8: "true"
         exclude:
           - os: ubuntu-latest
-            node_version: 6
+            node_v: 6
           - os: macos-latest
-            node_version: 8
+            node_v: 8
 
     runs-on: ${{ matrix.os }}
     env:
@@ -34,7 +34,7 @@ jobs:
         run: node -v
       - uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node_version }}
+          node-version: ${{ matrix.node_v }}
       - name: Log node version
         run: |
           node -v
