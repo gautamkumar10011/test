@@ -37,7 +37,7 @@ jobs:
     - name: Populate readme.md from master
       run: |
         cat ./scripts/read-me.md >> readme.md
-        rm -f ./scripts/read-me.md
+        rm -f ./scripts/read-me.md            # This not worked
         git add readme.md
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
