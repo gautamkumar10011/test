@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - newbranch  # matches feature/featA, feature/featB, doesn't match feature/feat/a
-    tags:
-      - v1.*
-    paths:
-      - "**.js"
-      - "!filename.js"
+    # tags:
+    #   - v1.*
+    # paths:
+    #   - "**.js"
+    #   - "!filename.js"
     # paths-ignore:
     #   - 'docs/**'
   # repository_dispatch:
