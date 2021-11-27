@@ -1,5 +1,3 @@
-const core = require('@actions/core');
-
 
 function main() {
     // on master branch will be empty array
