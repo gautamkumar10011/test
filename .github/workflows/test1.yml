@@ -30,6 +30,11 @@ jobs:
       - name: Checking version of g++
         run: g++ --version
       # Adding code from the test repo.
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v1
+          with:
+            version: latest
+            platform: x64
       - name: Repo code
         uses: actions/checkout@v1
       - name: compiling c code
