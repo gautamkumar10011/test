@@ -29,3 +29,4 @@ jobs:
       run: node ./scripts/data-validate.js
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo $GITHUB_TOKEN
