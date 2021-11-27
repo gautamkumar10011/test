@@ -36,4 +36,4 @@ jobs:
           ./sort-data.out 
           python --version
       - name: running python code
-        python ./sorted.py
+        run: python ./sorted.py
