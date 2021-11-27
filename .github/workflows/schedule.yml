@@ -10,6 +10,8 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
+      env: 
+        DELAYED_JOB_CHECKOUT_REF: src/
       - uses: actions/checkout@v2
         with:
           ref: ${{ env.DELAYED_JOB_CHECKOUT_REF }} # SHA that triggered your original job 
