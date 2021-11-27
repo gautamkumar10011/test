@@ -36,7 +36,6 @@ jobs:
         with:
           version: latest
           platform: x64
-      - name: Repo code
       - name: compiling c code
         run: gcc ./hello-world.c -o hello-world.out
       - name: Listing all file in the current directory
