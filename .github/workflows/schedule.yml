@@ -1,54 +1,52 @@
-# Any Change in the data.js or read-me.md will trigger the workflow
-name: Populate readme.md from master and lint src/data.js
+name: Actions Worflow
 
 on:
-  push:
-    branches: master
-    paths:
-    - src/data.js
-    - scripts/read-me.md
+  schedule:
+    - cron: '0/5 * * * *'
+    - cron: '0/6 * * * *'
+  # push:
+  #   branches:
+  #     - newbranch  # matches feature/featA, feature/featB, doesn't match feature/feat/a
+    # tags:
+    #   - v1.*
+    # paths:
+    #   - "**.js"
+    #   - "!filename.js"     And relations
+    # paths-ignore:
+    #   - 'docs/**'
+  # repository_dispatch:
+  #   types: [build]
 
-env:
-  CI: true
+  # push:
+  # pull_request:
+  #   types: [closed, assigned, opened, reopened]
 
 jobs:
-  build:
+  run-github-actions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-
-    - name: Cache/Restore node modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm 
-        key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Lint src/data.js
-      run: |
-        echo "Adding some text to the file" >> src/data.js
-        git add src/data.js
-
-    - name: Populate readme.md from master
-      run: |
-        cat ./scripts/read-me.md >> readme.md
-        rm -f ./scripts/read-me.md            # This not worked
-        git add readme.md
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        # commit only if any changes
-        if [ ! -z "$(git status --porcelain)" ]; then
-        git commit -m "chore: generate \`readme.md\`, lint \`src/data.js\`"
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: payload
+        run: echo ${{ github.event.client_payload.env }}
+      - name: List Files
+        run: |
+          pwd
+          ls -a
+          echo $GITHUB_SHA 
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+          echo "${{ github.token }}"
+          # git clone git@github:$GITHUB_REPOSITORY
+          # git checkout $GITHUB_SHA
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: List Files After Checkout
+        run: |
+          pwd
+          ls -a
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: John
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}"
