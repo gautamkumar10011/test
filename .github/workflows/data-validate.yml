@@ -26,7 +26,8 @@ jobs:
       run: npm install
 
     - name: Validate data.js
-      run: node ./scripts/data-validate.js
+      run: |
+        node ./scripts/data-validate.js
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         echo $GITHUB_TOKEN
