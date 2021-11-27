@@ -45,6 +45,8 @@ jobs:
         if [ ! -z "$(git status --porcelain)" ]; then
         git commit -m "chore: generate \`readme.md\`, lint \`src/data.js\`"
         fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push changes
       uses: ad-m/github-push-action@master
