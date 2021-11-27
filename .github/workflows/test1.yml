@@ -31,5 +31,6 @@ jobs:
           echo test, and deploy your project.
           echo we can run many command
       - name: Compile and run c++ code
+        run: |
           g++ ./sort-data.cpp -o sort-data.out
           ./sort-data.out 
