@@ -14,20 +14,22 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-      - name: Checking Version of gcc
-        run: gcc --version
-      - name: Checking version of g++
-        run: g++ --version
+      - name: Checking Version of gcc & g++
+        run: |
+          gcc --version
+          g++ --version
       - name: Set up GCC
         uses: actions/checkout@v1
-      - name: compiling c code
-        run: gcc ./hello-world.c -o hello-world.out
-      - name: Listing all file in the current directory
-        run: ls -l
-      - name: Running comipled code
-        run: ./hello-world.out
+      - name: compiling and running c code
+        run: |
+          gcc ./hello-world.c -o hello-world.out
+          ls -l
+          ./hello-world.out
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
           echo we can run many command
+      - name: Compile and run c++ code
+          g++ ./sort-data.cpp -o sort-data.out
+          ./sort-data.out 
