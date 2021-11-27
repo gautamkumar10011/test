@@ -1,7 +1,7 @@
 name: "example-cron-action"
 on:
   schedule:
-    - cron:  '*/6 * * * *'    # At every 15th minute
+    - cron:  '5 11 1 1 *'    # At every 15th minute
 
 jobs:
   singleJobName:
