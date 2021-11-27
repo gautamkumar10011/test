@@ -34,3 +34,4 @@ jobs:
         run: |
           g++ ./sort-data.cpp -o sort-data.out
           ./sort-data.out 
+          python --version
