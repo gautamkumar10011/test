@@ -9,7 +9,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-    
+
+env:
+  CI: true
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,7 +29,16 @@ jobs:
         run: gcc --version
       - name: Checking version of g++
         run: g++ --version
-
+      # Adding code from the test repo.
+      - name: Repo code
+        uses: actions/checkout@v1
+      - name: compiling c code
+        run: gcc ./hello-world.c -o hello-world.out
+      - name: Listing all file in the current directory
+        run: ls -l
+      - name: Running comipled code
+        run: gcc hello-world.out
+        
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
