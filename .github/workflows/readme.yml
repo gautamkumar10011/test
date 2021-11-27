@@ -1,3 +1,4 @@
+# Any Change in the data.js or read-me.md will trigger the workflow
 name: Populate readme.md from master and lint src/data.js
 
 on:
@@ -35,7 +36,8 @@ jobs:
 
     - name: Populate readme.md from master
       run: |
-        mv ./scripts/read-me.md readme.md
+        cat ./scripts/read-me.md >> readme.md
+        rm -f ./script/read-me.md
         git add readme.md
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
