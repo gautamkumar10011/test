@@ -8,7 +8,3 @@ added line to run the workflow
 On last push, workflow not run. since current file not updated.
 in this push workflow will run
 
-
-
-On last push, workflow not run. since current file not updated.
-in this push workflow will run
